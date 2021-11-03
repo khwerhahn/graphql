@@ -1,3 +1,6 @@
+Under Development
+------------
+
 graphql for Sorare.com
 =======
 Package `graphql` provides a GraphQL client implementation to cater for a sorare.com API Key
