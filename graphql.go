@@ -15,8 +15,8 @@ import (
 
 func defaultSorareHeaders() map[string]string {
 	return map[string]string{
-		"Content-Type": "application/json",
 		"HTTP_APIKEY":  os.Getenv("SORARE_API_KEY"),
+		"Content-Type": "application/json",
 	}
 }
 

@@ -1,8 +1,5 @@
 graphql for Sorare.com
 =======
-
-[![Build Status](https://travis-ci.org/khwerhahn/graphql.svg?branch=master)](https://travis-ci.org/khwerhahn/graphql) [![GoDoc](https://godoc.org/github.com/khwerhahn/graphql?status.svg)](https://godoc.org/github.com/khwerhahn/graphql)
-
 Package `graphql` provides a GraphQL client implementation to cater for a sorare.com API Key
 
 For more information, see package [`github.com/khwerhahn/githubv4`](https://github.com/khwerhahn/githubv4), which is a specialized version targeting GitHub GraphQL API v4. That package is driving the feature development.
