@@ -7,24 +7,39 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
-	"github.com/shurcooL/graphql/internal/jsonutil"
+	"github.com/khwerhahn/graphql/internal/jsonutil"
 	"golang.org/x/net/context/ctxhttp"
 )
+
+func defaultSorareHeaders() map[string]string {
+	return map[string]string{
+		"Content-Type": "application/json",
+		"HTTP_APIKEY":  os.Getenv("SORARE_API_KEY"),
+	}
+}
 
 // Client is a GraphQL client.
 type Client struct {
 	url        string // GraphQL server URL.
 	httpClient *http.Client
+	headers    map[string]string
 }
 
 // NewClient creates a GraphQL client targeting the specified GraphQL server URL.
 // If httpClient is nil, then http.DefaultClient is used.
 func NewClient(url string, httpClient *http.Client) *Client {
 	if httpClient == nil {
-		httpClient = http.DefaultClient
+		return &Client{
+			headers:    defaultSorareHeaders(),
+			url:        url,
+			httpClient: httpClient,
+		}
 	}
+
 	return &Client{
+		headers:    defaultSorareHeaders(),
 		url:        url,
 		httpClient: httpClient,
 	}

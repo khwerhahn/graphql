@@ -51,9 +51,9 @@ func TestConstructQuery(t *testing.T) {
 							}
 						} `graphql:"comments(first:1after:\"Y3Vyc29yOjE5NTE4NDI1Ng==\")"`
 					} `graphql:"issue(number:1)"`
-				} `graphql:"repository(owner:\"shurcooL-test\"name:\"test-repo\")"`
+				} `graphql:"repository(owner:\"khwerhahn-test\"name:\"test-repo\")"`
 			}{},
-			want: `{repository(owner:"shurcooL-test"name:"test-repo"){databaseId,url,issue(number:1){comments(first:1after:"Y3Vyc29yOjE5NTE4NDI1Ng=="){edges{node{body,author{login},editor{login}},cursor}}}}}`,
+			want: `{repository(owner:"khwerhahn-test"name:"test-repo"){databaseId,url,issue(number:1){comments(first:1after:"Y3Vyc29yOjE5NTE4NDI1Ng=="){edges{node{body,author{login},editor{login}},cursor}}}}}`,
 		},
 		{
 			inV: func() interface{} {
@@ -84,10 +84,10 @@ func TestConstructQuery(t *testing.T) {
 								}
 							} `graphql:"comments(first:1)"`
 						} `graphql:"issue(number:1)"`
-					} `graphql:"repository(owner:\"shurcooL-test\"name:\"test-repo\")"`
+					} `graphql:"repository(owner:\"khwerhahn-test\"name:\"test-repo\")"`
 				}{}
 			}(),
-			want: `{repository(owner:"shurcooL-test"name:"test-repo"){databaseId,url,issue(number:1){comments(first:1){edges{node{databaseId,author{login,avatarUrl,url},publishedAt,lastEditedAt,editor{login,avatarUrl,url},body,viewerCanUpdate},cursor}}}}}`,
+			want: `{repository(owner:"khwerhahn-test"name:"test-repo"){databaseId,url,issue(number:1){comments(first:1){edges{node{databaseId,author{login,avatarUrl,url},publishedAt,lastEditedAt,editor{login,avatarUrl,url},body,viewerCanUpdate},cursor}}}}}`,
 		},
 		{
 			inV: func() interface{} {
@@ -137,10 +137,10 @@ func TestConstructQuery(t *testing.T) {
 								}
 							} `graphql:"comments(first:1)"`
 						} `graphql:"issue(number:1)"`
-					} `graphql:"repository(owner:\"shurcooL-test\"name:\"test-repo\")"`
+					} `graphql:"repository(owner:\"khwerhahn-test\"name:\"test-repo\")"`
 				}{}
 			}(),
-			want: `{repository(owner:"shurcooL-test"name:"test-repo"){issue(number:1){author{login,avatarUrl(size:72),url},publishedAt,lastEditedAt,editor{login,avatarUrl(size:72),url},body,reactionGroups{content,users{totalCount},viewerHasReacted},viewerCanUpdate,comments(first:1){nodes{databaseId,author{login,avatarUrl(size:72),url},publishedAt,lastEditedAt,editor{login,avatarUrl(size:72),url},body,reactionGroups{content,users{totalCount},viewerHasReacted},viewerCanUpdate},pageInfo{endCursor,hasNextPage}}}}}`,
+			want: `{repository(owner:"khwerhahn-test"name:"test-repo"){issue(number:1){author{login,avatarUrl(size:72),url},publishedAt,lastEditedAt,editor{login,avatarUrl(size:72),url},body,reactionGroups{content,users{totalCount},viewerHasReacted},viewerCanUpdate,comments(first:1){nodes{databaseId,author{login,avatarUrl(size:72),url},publishedAt,lastEditedAt,editor{login,avatarUrl(size:72),url},body,reactionGroups{content,users{totalCount},viewerHasReacted},viewerCanUpdate},pageInfo{endCursor,hasNextPage}}}}}`,
 		},
 		{
 			inV: struct {
@@ -148,9 +148,9 @@ func TestConstructQuery(t *testing.T) {
 					Issue struct {
 						Body String
 					} `graphql:"issue(number: 1)"`
-				} `graphql:"repository(owner:\"shurcooL-test\"name:\"test-repo\")"`
+				} `graphql:"repository(owner:\"khwerhahn-test\"name:\"test-repo\")"`
 			}{},
-			want: `{repository(owner:"shurcooL-test"name:"test-repo"){issue(number: 1){body}}}`,
+			want: `{repository(owner:"khwerhahn-test"name:"test-repo"){issue(number: 1){body}}}`,
 		},
 		{
 			inV: struct {
@@ -161,7 +161,7 @@ func TestConstructQuery(t *testing.T) {
 				} `graphql:"repository(owner: $repositoryOwner, name: $repositoryName)"`
 			}{},
 			inVariables: map[string]interface{}{
-				"repositoryOwner": String("shurcooL-test"),
+				"repositoryOwner": String("khwerhahn-test"),
 				"repositoryName":  String("test-repo"),
 				"issueNumber":     Int(1),
 			},
@@ -182,7 +182,7 @@ func TestConstructQuery(t *testing.T) {
 				} `graphql:"repository(owner: $repositoryOwner, name: $repositoryName)"`
 			}{},
 			inVariables: map[string]interface{}{
-				"repositoryOwner": String("shurcooL-test"),
+				"repositoryOwner": String("khwerhahn-test"),
 				"repositoryName":  String("test-repo"),
 				"issueNumber":     Int(1),
 			},

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shurcooL/graphql"
-	"github.com/shurcooL/graphql/internal/jsonutil"
+	"github.com/khwerhahn/graphql"
+	"github.com/khwerhahn/graphql/internal/jsonutil"
 )
 
 func TestUnmarshalGraphQL(t *testing.T) {
@@ -300,7 +300,7 @@ func TestUnmarshalGraphQL_union(t *testing.T) {
 		"__typename": "ClosedEvent",
 		"createdAt": "2017-06-29T04:12:01Z",
 		"actor": {
-			"login": "shurcooL-test"
+			"login": "khwerhahn-test"
 		}
 	}`), &got)
 	if err != nil {
@@ -310,13 +310,13 @@ func TestUnmarshalGraphQL_union(t *testing.T) {
 		Typename: "ClosedEvent",
 		ClosedEvent: closedEvent{
 			Actor: actor{
-				Login: "shurcooL-test",
+				Login: "khwerhahn-test",
 			},
 			CreatedAt: time.Unix(1498709521, 0).UTC(),
 		},
 		ReopenedEvent: reopenedEvent{
 			Actor: actor{
-				Login: "shurcooL-test",
+				Login: "khwerhahn-test",
 			},
 			CreatedAt: time.Unix(1498709521, 0).UTC(),
 		},
@@ -326,7 +326,7 @@ func TestUnmarshalGraphQL_union(t *testing.T) {
 	}
 }
 
-// Issue https://github.com/shurcooL/githubv4/issues/18.
+// Issue https://github.com/khwerhahn/githubv4/issues/18.
 func TestUnmarshalGraphQL_arrayInsideInlineFragment(t *testing.T) {
 	/*
 		query {

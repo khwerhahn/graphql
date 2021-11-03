@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/shurcooL/graphql"
-	"github.com/shurcooL/graphql/internal/jsonutil"
+	"github.com/khwerhahn/graphql"
+	"github.com/khwerhahn/graphql/internal/jsonutil"
 )
 
 func TestUnmarshalGraphQL_benchmark(t *testing.T) {
@@ -30,7 +30,7 @@ func TestUnmarshalGraphQL_benchmark(t *testing.T) {
 	var got query
 	err := jsonutil.UnmarshalGraphQL([]byte(`{
 		"viewer": {
-			"login": "shurcooL-test",
+			"login": "khwerhahn-test",
 			"createdAt": "2017-06-29T04:12:01Z"
 		}
 	}`), &got)
@@ -38,7 +38,7 @@ func TestUnmarshalGraphQL_benchmark(t *testing.T) {
 		t.Fatal(err)
 	}
 	var want query
-	want.Viewer.Login = "shurcooL-test"
+	want.Viewer.Login = "khwerhahn-test"
 	want.Viewer.CreatedAt = time.Unix(1498709521, 0).UTC()
 	if !reflect.DeepEqual(got, want) {
 		t.Error("not equal")
@@ -57,7 +57,7 @@ func BenchmarkUnmarshalGraphQL(b *testing.B) {
 		var got query
 		err := jsonutil.UnmarshalGraphQL([]byte(`{
 			"viewer": {
-				"login": "shurcooL-test",
+				"login": "khwerhahn-test",
 				"createdAt": "`+now.Format(time.RFC3339Nano)+`"
 			}
 		}`), &got)
@@ -65,7 +65,7 @@ func BenchmarkUnmarshalGraphQL(b *testing.B) {
 			b.Fatal(err)
 		}
 		var want query
-		want.Viewer.Login = "shurcooL-test"
+		want.Viewer.Login = "khwerhahn-test"
 		want.Viewer.CreatedAt = now
 		if !reflect.DeepEqual(got, want) {
 			b.Error("not equal")
@@ -85,7 +85,7 @@ func BenchmarkJSONUnmarshal(b *testing.B) {
 		var got query
 		err := json.Unmarshal([]byte(`{
 			"viewer": {
-				"login": "shurcooL-test",
+				"login": "khwerhahn-test",
 				"createdAt": "`+now.Format(time.RFC3339Nano)+`"
 			}
 		}`), &got)
@@ -93,7 +93,7 @@ func BenchmarkJSONUnmarshal(b *testing.B) {
 			b.Fatal(err)
 		}
 		var want query
-		want.Viewer.Login = "shurcooL-test"
+		want.Viewer.Login = "khwerhahn-test"
 		want.Viewer.CreatedAt = now
 		if !reflect.DeepEqual(got, want) {
 			b.Error("not equal")
@@ -106,7 +106,7 @@ func BenchmarkJSONTokenize(b *testing.B) {
 		now := time.Now().UTC()
 		dec := json.NewDecoder(strings.NewReader(`{
 			"viewer": {
-				"login": "shurcooL-test",
+				"login": "khwerhahn-test",
 				"createdAt": "` + now.Format(time.RFC3339Nano) + `"
 			}
 		}`))
