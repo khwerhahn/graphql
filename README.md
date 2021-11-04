@@ -21,7 +21,7 @@ Usage
 
 This package was forked just to work for a sorare.com project. 
 
-You have to inlcude an environment variable ```SORARE_API_KEY``` to work.
+You have to inlcude an environment variable ```SORARE_API_KEY``` to work. Make sure that you throttle your API calls according to the latest sorare docs. 
 
 
 Construct a GraphQL client, specifying the GraphQL server URL. Then, you can use it to make GraphQL queries and mutations.

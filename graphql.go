@@ -13,6 +13,23 @@ import (
 	"golang.org/x/net/context/ctxhttp"
 )
 
+type AddHeaderTransport struct {
+	T http.RoundTripper
+}
+
+func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
+	// fmt.Printf("Request header %v\n", req.Header)
+	return adt.T.RoundTrip(req)
+}
+
+func NewAddHeaderTransport(T http.RoundTripper) *AddHeaderTransport {
+	if T == nil {
+		T = http.DefaultTransport
+	}
+	return &AddHeaderTransport{T}
+}
+
 func defaultSorareHeaders() map[string]string {
 	return map[string]string{
 		"HTTP_APIKEY":  os.Getenv("SORARE_API_KEY"),
@@ -29,14 +46,9 @@ type Client struct {
 
 // NewClient creates a GraphQL client targeting the specified GraphQL server URL.
 // If httpClient is nil, then http.DefaultClient is used.
-func NewClient(url string, httpClient *http.Client) *Client {
-	if httpClient == nil {
-		return &Client{
-			headers:    defaultSorareHeaders(),
-			url:        url,
-			httpClient: httpClient,
-		}
-	}
+func NewClient(url string) *Client {
+
+	httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
 
 	return &Client{
 		headers:    defaultSorareHeaders(),
