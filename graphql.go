@@ -19,7 +19,7 @@ type AddHeaderTransport struct {
 
 // RoundTrip adds the HTTP_APIKEY header to the request. Make sure you include the environment variable SORARE_API_KEY.
 func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.Header["HTTP_APIKEY"] = []string{os.Getenv("SORARE_API_KEY")}
+	req.Header["APIKEY"] = []string{os.Getenv("SORARE_API_KEY")}
 	return adt.T.RoundTrip(req)
 }
 
