@@ -1,6 +1,3 @@
-Under Development
-------------
-
 graphql for Sorare.com
 =======
 Package `graphql` provides a GraphQL client implementation to cater for a sorare.com API Key
@@ -19,7 +16,7 @@ go get -u github.com/khwerhahn/graphql
 Usage
 -----
 
-This package was forked just to work for a sorare.com project. 
+This package was forked !!just!! to work for a sorare.com project. 
 
 You have to inlcude an environment variable ```SORARE_API_KEY``` to work. Make sure that you throttle your API calls according to the latest sorare docs. 
 
@@ -27,28 +24,18 @@ You have to inlcude an environment variable ```SORARE_API_KEY``` to work. Make s
 Construct a GraphQL client, specifying the GraphQL server URL. Then, you can use it to make GraphQL queries and mutations.
 
 ```Go
-client := graphql.NewClient("https://example.com/graphql", nil)
+client := graphql.NewClient("https://api.sorare.com/graphql")
 // Use client...
 ```
 
 ### Authentication
 
-Some GraphQL servers may require authentication. The `graphql` package does not directly handle authentication. Instead, when creating a new client, you're expected to pass an `http.Client` that performs authentication. The easiest and recommended way to do this is to use the [`golang.org/x/oauth2`](https://golang.org/x/oauth2) package. You'll need an OAuth token with the right scopes. Then:
+Sorare API requires a header ```APIKEY```. This package adds it automatically via the environment variable ```SORARE_API_KEY```. Make that you add it. 
 
-```Go
-import "golang.org/x/oauth2"
 
-func main() {
-	src := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: os.Getenv("GRAPHQL_TOKEN")},
-	)
-	httpClient := oauth2.NewClient(context.Background(), src)
-
-	client := graphql.NewClient("https://example.com/graphql", httpClient)
-	// Use client...
-```
-
-### Simple Query
+### Sorare API
+Please follow the official [sorare.com](https://github.com/sorare/api) documentation. There is also a [graphql playground](https://api.sorare.com/graphql/playground).
+### General Queries
 
 To make a GraphQL query, you need to define a corresponding Go type.
 
