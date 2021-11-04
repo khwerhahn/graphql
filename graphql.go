@@ -18,9 +18,9 @@ type AddHeaderTransport struct {
 }
 
 func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
-	req.Header["TEST"] = []string{"SORARE_API_KEY"}
-	req.Header.Add("HTTP_APIKEY_2", os.Getenv("SORARE_API_KEY"))
+	// req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
+	req.Header["HTTP_APIKEY"] = []string{os.Getenv("SORARE_API_KEY")}
+	// req.Header.Add("HTTP_APIKEY_2", os.Getenv("SORARE_API_KEY"))
 	return adt.T.RoundTrip(req)
 }
 
