@@ -33,6 +33,7 @@ func defaultSorareHeaders() map[string]string {
 	return map[string]string{
 		"HTTP_APIKEY":  os.Getenv("SORARE_API_KEY"),
 		"Content-Type": "application/json",
+		"Bullshit-Header": "bullshit"
 	}
 }
 
