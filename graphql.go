@@ -19,7 +19,6 @@ type AddHeaderTransport struct {
 
 func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
-	// fmt.Printf("Request header %v\n", req.Header)
 	return adt.T.RoundTrip(req)
 }
 
@@ -44,16 +43,16 @@ type Client struct {
 	headers    map[string]string
 }
 
-// NewClient creates a GraphQL client targeting the specified GraphQL server URL.
-// If httpClient is nil, then http.DefaultClient is used.
+// NewClient creates a GraphQL client targeting the sorare GraphQL server.
+// The URL has to be supplied
 func NewClient(url string) *Client {
 
-	httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
+	// httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
 
 	return &Client{
 		headers:    defaultSorareHeaders(),
 		url:        url,
-		httpClient: &httpClient,
+		httpClient: http.DefaultClient,
 	}
 }
 
