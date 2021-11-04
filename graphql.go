@@ -17,10 +17,9 @@ type AddHeaderTransport struct {
 	T http.RoundTripper
 }
 
+// RoundTrip adds the HTTP_APIKEY header to the request. Make sure you include the environment variable SORARE_API_KEY.
 func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	// req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
 	req.Header["HTTP_APIKEY"] = []string{os.Getenv("SORARE_API_KEY")}
-	// req.Header.Add("HTTP_APIKEY_2", os.Getenv("SORARE_API_KEY"))
 	return adt.T.RoundTrip(req)
 }
 
@@ -31,29 +30,17 @@ func NewAddHeaderTransport(T http.RoundTripper) *AddHeaderTransport {
 	return &AddHeaderTransport{T}
 }
 
-func defaultSorareHeaders() map[string]string {
-	return map[string]string{
-		"HTTP_APIKEY":     os.Getenv("SORARE_API_KEY"),
-		"Content-Type":    "application/json",
-		"Bullshit-Header": "bullshit",
-	}
-}
-
 // Client is a GraphQL client.
 type Client struct {
 	url        string // GraphQL server URL.
 	httpClient *http.Client
-	headers    map[string]string
 }
 
 // NewClient creates a GraphQL client targeting the sorare GraphQL server.
 // The URL has to be supplied
 func NewClient(url string) *Client {
-
 	httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
-
 	return &Client{
-		headers:    defaultSorareHeaders(),
 		url:        url,
 		httpClient: &httpClient,
 	}
