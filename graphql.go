@@ -53,7 +53,7 @@ func NewClient(url string) *Client {
 	return &Client{
 		headers:    defaultSorareHeaders(),
 		url:        url,
-		httpClient: httpClient,
+		httpClient: &httpClient,
 	}
 }
 
