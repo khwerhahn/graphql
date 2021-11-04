@@ -19,6 +19,8 @@ type AddHeaderTransport struct {
 
 func (adt *AddHeaderTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	req.Header.Add("HTTP_APIKEY", os.Getenv("SORARE_API_KEY"))
+	req.Header["TEST"] = []string{"SORARE_API_KEY"}
+	req.Header.Add("HTTP_APIKEY_2", os.Getenv("SORARE_API_KEY"))
 	return adt.T.RoundTrip(req)
 }
 
@@ -48,12 +50,12 @@ type Client struct {
 // The URL has to be supplied
 func NewClient(url string) *Client {
 
-	// httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
+	httpClient := http.Client{Transport: NewAddHeaderTransport(nil)}
 
 	return &Client{
 		headers:    defaultSorareHeaders(),
 		url:        url,
-		httpClient: http.DefaultClient,
+		httpClient: &httpClient,
 	}
 }
 
