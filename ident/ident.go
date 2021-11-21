@@ -145,15 +145,16 @@ func (n Name) ToMixedCaps() string {
 //
 // E.g., "clientMutationId".
 func (n Name) ToLowerCamelCase() string {
-	for i, word := range n {
-		if i == 0 {
-			n[i] = strings.ToLower(word)
-			continue
-		}
-		r, size := utf8.DecodeRuneInString(word)
-		n[i] = string(unicode.ToUpper(r)) + strings.ToLower(word[size:])
-	}
 	return strings.Join(n, "")
+	// for i, word := range n {
+	// 	if i == 0 {
+	// 		n[i] = strings.ToLower(word)
+	// 		continue
+	// 	}
+	// 	r, size := utf8.DecodeRuneInString(word)
+	// 	n[i] = string(unicode.ToUpper(r)) + strings.ToLower(word[size:])
+	// }
+	// return strings.Join(n, "")
 }
 
 // isInitialism reports whether word is an initialism.
