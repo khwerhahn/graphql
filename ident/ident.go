@@ -164,6 +164,8 @@ func (n Name) ToLowerCamelCase() string {
 		toReturn = "lastFifteenSo5Appearances"
 	} else if preReturnString == "lastFifteenSo5averageScore" {
 		toReturn = "lastFifteenSo5AverageScore"
+	} else {
+		toReturn = preReturnString
 	}
 	return toReturn
 }
