@@ -145,16 +145,27 @@ func (n Name) ToMixedCaps() string {
 //
 // E.g., "clientMutationId".
 func (n Name) ToLowerCamelCase() string {
-	return strings.Join(n, "")
-	// for i, word := range n {
-	// 	if i == 0 {
-	// 		n[i] = strings.ToLower(word)
-	// 		continue
-	// 	}
-	// 	r, size := utf8.DecodeRuneInString(word)
-	// 	n[i] = string(unicode.ToUpper(r)) + strings.ToLower(word[size:])
-	// }
-	// return strings.Join(n, "")
+	var toReturn string
+	for i, word := range n {
+		if i == 0 {
+			n[i] = strings.ToLower(word)
+			continue
+		}
+		r, size := utf8.DecodeRuneInString(word)
+		n[i] = string(unicode.ToUpper(r)) + strings.ToLower(word[size:])
+	}
+	preReturnString := strings.Join(n, "")
+
+	if preReturnString == "lastFiveSo5appearances" {
+		toReturn = "lastFiveSo5Appearances"
+	} else if preReturnString == "lastFiveSo5averageScore" {
+		toReturn = "lastFiveSo5AverageScore"
+	} else if preReturnString == "lastFifteenSo5appearances" {
+		toReturn = "lastFifteenSo5Appearances"
+	} else if preReturnString == "lastFifteenSo5averageScore" {
+		toReturn = "lastFifteenSo5AverageScore"
+	}
+	return toReturn
 }
 
 // isInitialism reports whether word is an initialism.
